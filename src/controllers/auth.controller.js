@@ -48,11 +48,13 @@ export const signIn = async(req, res) => {
     //La propiedad que le añadimos al final llamada POPULATE, nos trae lo que le metamos en los parametros, tal cual esta en nuestro modelo. Sino
     //le pusieramos el populate, solo nos traería el id, pero no veriamos que tipo de rol es ('admin', 'user'....), esto nos permite ver que tipo de rol es
     //ademas de su id que ya nos viene por defecte
-    const userFound = await User.findOne({ email: req.body. email }).populate('role');
+    const userFound = await User.findOne({ email: req.body.email }).populate('role');
+
+    console.log(userFound)
 
     if(!userFound) {
         return res.status(400).json({
-            msg: 'Usuario no encontrado'
+            msg: 'No existe usuario con ese email'
         })
     };
 
@@ -73,4 +75,4 @@ export const signIn = async(req, res) => {
 
     console.log(userFound)
     res.json({ token });
-}
+};
