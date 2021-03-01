@@ -2,8 +2,6 @@ import pkg from 'mongoose';
 const { Schema, model } = pkg;
 import bcrypt from 'bcryptjs';
 
-export const ROLES = ['admin', 'user', 'moderator'];
-
 const UserSchema = new Schema({
     name: {
         type: String,
