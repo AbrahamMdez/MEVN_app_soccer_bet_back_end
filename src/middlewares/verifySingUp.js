@@ -1,4 +1,15 @@
+import User from '../models/UserModel.js';
 import ROLES from '../models/UserModel.js';
+
+export const checkDuplicatedUserOrEmail = async (req, res, next) => {
+    const user = await User.findOne({ email: req.body.email })
+
+    if (user) return res.status(400).json({
+        msg: 'El usuario ya existe'
+    });
+
+    next();
+};
 
 export const checkIfRoleExists = (req, res, next) => {
     if(req.body.role) {
